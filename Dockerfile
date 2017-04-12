@@ -91,6 +91,38 @@ RUN set -ex \
 	&& apt-get purge -y --auto-remove $buildDeps \
 	&& rm -rf /usr/src/python ~/.cache
 
+RUN apt-get update && apt-get install -y \
+        build-essential \
+        ca-certificates \
+        curl \
+        git \
+        libbz2-dev \
+        libc6-dev \
+        libgdbm3 \
+        libjpeg62 \
+        libjpeg62 \
+        libjpeg62-turbo-dev \
+        libsqlite3-0 \
+        libssl-dev \
+        libssl-dev \
+        libssl1.0.0 \
+        libxml2 \
+        libxml2-dev \
+        libxmlsec1 \
+        libxmlsec1-dev \
+        libxslt1-dev \
+        libxslt1.1 \
+        locales \
+        python-dev \
+        python-pip \
+        python-setuptools \
+        rsync \
+        sudo
+
+
+# install "virtualenv", since the vast majority of users of this image will want it
+RUN pip install --no-cache-dir virtualenv
+
 # make some useful symlinks that are expected to exist
 RUN cd /usr/local/bin \
 	&& { [ -e easy_install ] || ln -s easy_install-* easy_install; } \

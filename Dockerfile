@@ -218,4 +218,6 @@ COPY docker-entrypoint.sh /
 EXPOSE 9200 9300
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
-CMD ["python3"]
+#CMD ["python3"]
+#CMD ["sh", "-c", "elasticsearch; python3"]
+CMD ["elasticsearch"]

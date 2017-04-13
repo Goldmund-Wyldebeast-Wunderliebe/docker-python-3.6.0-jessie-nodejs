@@ -194,6 +194,9 @@ RUN set -x \
 	&& apt-get install -y --no-install-recommends "elasticsearch=$ELASTICSEARCH_DEB_VERSION" \
 	&& rm -rf /var/lib/apt/lists/*
 
+# Install additional ElasticSearch plugins (this step can be skipped!)
+RUN /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head
+
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 
 WORKDIR /usr/share/elasticsearch

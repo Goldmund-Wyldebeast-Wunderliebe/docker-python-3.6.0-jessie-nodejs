@@ -12,7 +12,7 @@ ENV PYTHON_VERSION 3.6.0
 # if this is called "PIP_VERSION", pip explodes with "ValueError: invalid truth value '<VERSION>'"
 ENV PYTHON_PIP_VERSION 9.0.1
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y \
         build-essential \
         ca-certificates \
         curl \
@@ -37,7 +37,8 @@ RUN apt-get update && apt-get install -y \
         python-pip \
         python-setuptools \
         rsync \
-        sudo
+        sudo \
+        xvfb
 
 
 # install "virtualenv", since the vast majority of users of this image will want it
@@ -50,5 +51,12 @@ RUN cd /usr/local/bin \
 RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 RUN apt-get install -y nodejs
 RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
+
+RUN ~/.nvm/nvm.sh install v7.5.0
+
+RUN mkdir -p /usr/lib/firefox47/
+RUN wget -qO- https://ftp.mozilla.org/pub/firefox/releases/47.0.1/linux-x86_64/en-GB/firefox-47.0.1.tar.bz2 | tar jx -C /usr/lib/firefox47/ --strip-components=1
+
+ENV FIREFOX_BIN_PATH /usr/lib/firefox47/firefox
 
 CMD ["python3"]

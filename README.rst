@@ -1,6 +1,6 @@
 docker-python-3.6.0-jessie-nodejs
 ----------------------------------
-Debian Jessie with python 3.6.0, NodeJS, NVM, git, python-pip preinstalled
+Debian Jessie with:python 3.6.0, NodeJS, NVM, git, python-pip, Firefox 47 preinstalled
 
 Used for Plone/Django test runners in Gitlab CI.
 
@@ -24,7 +24,7 @@ To run:
 
 .. code-block:: sh
 
-	docker run -p 9200:9200 -e "http.host=0.0.0.0" -e "transport.host=127.0.0.1" gw20e/jessie-py3.6.0-nodejs:elastic-2.x
+	docker run gw20e/jessie-py3.6.0-nodejs
 
 Gitlab CI
 =========

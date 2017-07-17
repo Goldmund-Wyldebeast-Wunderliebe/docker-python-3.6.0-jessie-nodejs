@@ -21,9 +21,12 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
         libc6-dev \
         libffi-dev \
         libgdbm3 \
+        libicu-dev \
+        libgdbm3 \
         libjpeg62 \
         libjpeg62-turbo-dev \
         libsqlite3-0 \
+        libssl-dev \
         libssl-dev \
         libssl1.0.0 \
         libxml2 \
@@ -50,9 +53,9 @@ RUN cd /usr/local/bin \
 
 RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 RUN apt-get install -y nodejs
+# Install nvm
 RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
 
-RUN ~/.nvm/nvm.sh install v7.5.0
 
 RUN mkdir -p /usr/lib/firefox47/
 RUN wget -qO- https://ftp.mozilla.org/pub/firefox/releases/47.0.1/linux-x86_64/en-GB/firefox-47.0.1.tar.bz2 | tar jx -C /usr/lib/firefox47/ --strip-components=1
